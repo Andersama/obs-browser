@@ -29,11 +29,8 @@ set(obs-browser_SOURCES
 	obs-browser/main.cpp
 	obs-browser/main-source.cpp
 	shared/browser-source.cpp
-<<<<<<< HEAD
 	shared/browser-scheme.cpp
-=======
 	shared/base64.cpp
->>>>>>> css-support
 )
 
 set(obs-browser_HEADERS
@@ -41,13 +38,9 @@ set(obs-browser_HEADERS
 	shared/browser-source.hpp
 	shared/browser-listener.hpp
 	shared/browser-settings.hpp
-<<<<<<< HEAD
 	shared/browser-scheme.hpp
-	shared/browser-types.h)
-=======
 	shared/browser-types.h
 	shared/base64.hpp)
->>>>>>> css-support
 
 if (APPLE)
 	list(APPEND obs-browser_SOURCES
