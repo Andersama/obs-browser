@@ -31,6 +31,7 @@ set(obs-browser_SOURCES
 	shared/browser-source.cpp
 	shared/browser-scheme.cpp
 	shared/base64.cpp
+	obs-browser/browser-load-handler.cpp
 )
 
 set(obs-browser_HEADERS
@@ -40,7 +41,8 @@ set(obs-browser_HEADERS
 	shared/browser-settings.hpp
 	shared/browser-scheme.hpp
 	shared/browser-types.h
-	shared/base64.hpp)
+	shared/base64.hpp
+	obs-browser/browser-load-handler.hpp)
 
 if (APPLE)
 	list(APPEND obs-browser_SOURCES
