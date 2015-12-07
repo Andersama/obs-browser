@@ -53,6 +53,12 @@ static bool is_local_file_modified(obs_properties_t *props,
 	return true;
 }
 
+static bool is_css_modified(obs_properties_t *props,
+		obs_property_t *prop, obs_data_t *settings)
+{
+	return false;
+}
+
 static obs_properties_t *browser_source_get_properties(void *)
 {
 	obs_properties_t *props = obs_properties_create();
@@ -74,8 +80,10 @@ static obs_properties_t *browser_source_get_properties(void *)
 			obs_module_text("Height"), 1, 4096, 1);
 	obs_properties_add_int(props, "fps",
 			obs_module_text("FPS"), 1, 60, 1);
+	//obs_properties_set_flags
 	obs_properties_add_text(props, "css",
 		obs_module_text("CSS"), OBS_TEXT_MULTILINE);
+
 #ifdef __APPLE__
 	// osx is the only process-isolated cef impl
 	obs_properties_add_button(props, "restart",
@@ -103,7 +111,7 @@ static uint32_t browser_source_get_height(void *data)
 }
 
 
-static const char *browser_source_get_name(void)
+static const char *browser_source_get_name(void *)
 {
 	return obs_module_text("BrowserSource");
 }
