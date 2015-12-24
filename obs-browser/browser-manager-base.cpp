@@ -117,6 +117,7 @@ int BrowserManager::Impl::CreateBrowser(
 
 		CefBrowserSettings cefBrowserSettings;
 		cefBrowserSettings.windowless_frame_rate = browserSettings.fps;
+		cefBrowserSettings.web_security = cef_state_t::STATE_DISABLED;
 
 		CefRefPtr<CefBrowser> browser =
 				CefBrowserHost::CreateBrowserSync(windowInfo, 
