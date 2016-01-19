@@ -63,6 +63,7 @@ static obs_properties_t *browser_source_get_properties(void *)
 {
 	obs_properties_t *props = obs_properties_create();
 
+	obs_properties_set_flags(props, OBS_PROPERTIES_DEFER_UPDATE);
 	// use this when obs allows non-readonly paths
 	obs_property_t *prop = obs_properties_add_bool(props, "is_local_file",
 			obs_module_text("Local file"));
@@ -81,8 +82,9 @@ static obs_properties_t *browser_source_get_properties(void *)
 	obs_properties_add_int(props, "fps",
 			obs_module_text("FPS"), 1, 60, 1);
 	//obs_properties_set_flags
-	obs_properties_add_text(props, "css",
+	obs_property_t *cssprop = obs_properties_add_text(props, "css",
 		obs_module_text("CSS"), OBS_TEXT_MULTILINE);
+	//obs_property_set_modified_callback(cssprop,is_css_modified);
 
 #ifdef __APPLE__
 	// osx is the only process-isolated cef impl
