@@ -84,6 +84,8 @@ static obs_properties_t *browser_source_get_properties(void *)
 	//obs_properties_set_flags
 	obs_property_t *cssprop = obs_properties_add_text(props, "css",
 		obs_module_text("CSS"), OBS_TEXT_MULTILINE);
+	obs_properties_add_bool(props, "shutdown",
+		obs_module_text("Shutdown when not active"));
 	//obs_property_set_modified_callback(cssprop,is_css_modified);
 
 #ifdef __APPLE__
@@ -116,6 +118,23 @@ static uint32_t browser_source_get_height(void *data)
 static const char *browser_source_get_name(void *)
 {
 	return obs_module_text("BrowserSource");
+}
+
+static void browser_source_activate(void *data)
+{
+	BrowserSource *bs = static_cast<BrowserSource *>(data);
+
+	//if ( bs->GetShutdown() )
+		bs->UpdateBrowser();
+	
+}
+
+static void browser_source_deactivate(void *data)
+{
+	BrowserSource *bs = static_cast<BrowserSource *>(data);
+
+	if (bs->GetShutdown())
+		BrowserManager::Instance()->DestroyBrowser(bs->GetBrowserIdentifier());
 }
 
 
@@ -217,6 +236,8 @@ create_browser_source_info()
 	browser_source_info.get_properties = browser_source_get_properties;
 	browser_source_info.get_defaults = browser_source_get_defaults;
 	browser_source_info.video_render = browser_source_render;
+	browser_source_info.activate = browser_source_activate;
+	browser_source_info.deactivate = browser_source_deactivate;
 
 	return browser_source_info;
 }
