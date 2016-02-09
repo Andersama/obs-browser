@@ -37,12 +37,9 @@ void BrowserApp::OnBeforeCommandLineProcessing(
 	const CefString& process_type,
 	CefRefPtr<CefCommandLine> command_line) 
 {
-	//command_line->AppendSwitch("ppapi-out-of-process");
-	//command_line->AppendSwitchWithValue("register-pepper-plugins", "C:\Program Files (x86)\Google\Chrome\Application\47.0.2526.106\PepperFlash\pepflashplayer.dll;application/x-shockwave-flash");
-	//command_line->AppendSwitch("enable-media-stream");
-	command_line->AppendSwitch("enable-system-flash");
-	//command_line->AppendSwitchWithValue("ppapi-flash-path", "C:\Program Files (x86)\Google\Chrome\Application\47.0.2526.106\PepperFlash\pepflashplayer.dll");
-	//command_line->AppendSwitchWithValue("ppapi-flash-version", "20.0.0.228");
+	command_line->AppendSwitch("ppapi-out-of-process");
+	command_line->AppendSwitchWithValue("ppapi-flash-path", "flash\\pepflashplayer.dll");
+	command_line->AppendSwitchWithValue("ppapi-flash-version", "20.0.0.228");
 	
 }
 
