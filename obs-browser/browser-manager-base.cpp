@@ -117,6 +117,9 @@ int BrowserManager::Impl::CreateBrowser(
 
 		CefBrowserSettings cefBrowserSettings;
 		cefBrowserSettings.windowless_frame_rate = browserSettings.fps;
+		cefBrowserSettings.databases = STATE_ENABLED;
+		cefBrowserSettings.local_storage = STATE_ENABLED;
+//		cefBrowserSettings.
 
 		CefRefPtr<CefBrowser> browser =
 				CefBrowserHost::CreateBrowserSync(windowInfo, 
@@ -255,7 +258,6 @@ void BrowserManager::Impl::SendKeyClick(int browserIdentifier,
 		
 		//e.native_key_code = event->native_vkey;
 		e.modifiers = event->modifiers;
-		
 		b->GetHost()->SendKeyEvent(e);
 		if (event->text && !keyUp) {
 			e.type = KEYEVENT_CHAR;
@@ -347,6 +349,10 @@ void BrowserManager::Impl::BrowserManagerEntry()
 		settings.log_severity = LOGSEVERITY_VERBOSE;
 		settings.windowless_rendering_enabled = true;
 		settings.no_sandbox = true;
+		CefString(&settings.cache_path).FromASCII("..\\..\\data\\obs-plugins\\obs-browser");
+		settings.command_line_args_disabled = true;
+		settings.remote_debugging_port = 12345;
+		
 		CefString(&settings.browser_subprocess_path) = getBootstrap();
 		CefRefPtr<BrowserApp> app(new BrowserApp());
 		CefExecuteProcess(mainArgs, app, nullptr);

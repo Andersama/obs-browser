@@ -33,3 +33,15 @@ void BrowserApp::OnRegisterCustomSchemes(
 	registrar->AddCustomScheme("http", true, true, false);
 }
 
+	//command_line->AppendSwitchWithValue("ppapi-flash-path", "C:\Program Files (x86)\Google\Chrome\Application\47.0.2526.106\PepperFlash\pepflashplayer.dll");
+	//command_line->AppendSwitchWithValue("ppapi-flash-version", "20.0.0.228");
+	
+}
+
+	command_line->AppendSwitch("enable-gpu");
+	command_line->AppendSwitchWithValue("remote-debugging-port", "12345");
+	//command_line->AppendSwitchWithValue("ppapi-flash-path", "C:\Program Files (x86)\Google\Chrome\Application\47.0.2526.106\PepperFlash\pepflashplayer.dll");
+	//command_line->AppendSwitchWithValue("ppapi-flash-version", "20.0.0.228");
+	
+}
+
