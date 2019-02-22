@@ -325,7 +325,8 @@ bool BrowserApp::Execute(const CefString &name,
 		CefRefPtr<CefBrowser> browser =
 			CefV8Context::GetCurrentContext()->GetBrowser();
 		browser->SendProcessMessage(PID_BROWSER, msg);
-	} else if (name == "startStreaming" || name == "stopStreaming" || name == "startRecording" || name == "stopRecording" || name == "startReplaybuffer" || name == "stopReplaybuffer") {
+	} else if (name == "startStreaming" || name == "stopStreaming" || name == "startRecording" || name == "stopRecording" ||
+		name == "startReplaybuffer" || name == "stopReplaybuffer") {
 		// TODO Find out from Jim if we can skip SendProcessMessage and just run OBS functions directly in here (if yes, just copy all the if else statements)
 		CefRefPtr<CefProcessMessage> msg =
 			CefProcessMessage::Create(name);
@@ -338,7 +339,7 @@ bool BrowserApp::Execute(const CefString &name,
 			return false;
 			
 		CefRefPtr<CefProcessMessage> msg =
-			CefProcessMessage::Create("setCurrentScene");
+			CefProcessMessage::Create(name);
 		CefRefPtr<CefListValue> args = msg->GetArgumentList();
 		args->SetString(0, arguments[0]->GetStringValue());
 
