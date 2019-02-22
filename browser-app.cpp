@@ -94,6 +94,7 @@ void BrowserApp::OnContextCreated(CefRefPtr<CefBrowser>,
 			pluginVersion, V8_PROPERTY_ATTRIBUTE_NONE);
 
 	std::vector<std::string> functions = {
+		"getOBSVersion",
 		"getCurrentScene",
 		"getCurrentTransition",
 		"getCurrentProfile",
@@ -311,7 +312,7 @@ bool BrowserApp::Execute(const CefString &name,
 		CefString &)
 {
 	if (name == "getCurrentScene" || name == "getStatus" || name == "getCurrentProfile" || name == "getCurrentTransition" ||
-		name == "getScenes" || name == "getTransitions" || name == "getProfiles") {
+		name == "getScenes" || name == "getTransitions" || name == "getProfiles" || name == "getOBSVersion") {
 		if (arguments.size() == 1 && arguments[0]->IsFunction()) {
 			callbackId++;
 			callbackMap[callbackId] = arguments[0];

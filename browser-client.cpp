@@ -171,6 +171,18 @@ bool BrowserClient::OnProcessMessageReceived(
 		};
 
 		bfree(profile);
+	} else if (name == "getOBSVersion") {
+		std::string version = obs_get_version_string();
+		uint32_t num = obs_get_version();
+		uint8_t major = (num >> 24) & 0xFF;
+		uint8_t minor = (num >> 16) & 0xFF;
+		uint8_t patch = (num) & 0xFF;
+		json = Json::object {
+			{"version", version},
+			{"major", major},
+			{"minor", minor},
+			{"patch", patch}
+		};
 	} else if (name == "getProfiles" || name == "getSceneCollections") {
 		BPtr<char*> list;
 		std::string key;
